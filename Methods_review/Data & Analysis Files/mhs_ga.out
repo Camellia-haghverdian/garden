@@ -1,0 +1,590 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+04/05/2022   1:52 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+  DATA: file = "Mental_health_Rerun_within.csv";
+
+  DEFINE:
+  !Y2 Vars
+  Y2GA = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10
+  Y2GA11 Y2GA12  Y2GA13 Y2GA14 Y2GA15 Y2GA16   Y2GA18 Y2GA19 Y2GA20
+  Y2GA21 Y2GA22 Y2GA23   Y2GA25 Y2GA26
+  Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !advisor selection criteria:
+  Y2GA_SC = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10 );
+  !Advisor Function:
+  Y2GA_AF = mean(Y2GA11 Y2GA12 Y2GA13 Y2GA14 Y2GA15 Y2GA16 Y2GA17 Y2GA18
+  Y2GA19 Y2GA20 Y2GA21 Y2GA22 Y2GA23 Y2GA24 Y2GA25 Y2GA26 );
+  !Advisor Satisfaction:
+  Y2GA_AS = mean(Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !Time to degree:
+  Y2GA_TD = mean(Y2GA34 Y2GA35 Y2GA36 Y2GA37 );
+  !Y3 Vars
+  Y3GA = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10
+  Y3GA11 Y3GA12  Y3GA13 Y3GA14 Y3GA15 Y3GA16   Y3GA18 Y3GA19 Y3GA20
+  Y3GA21 Y3GA22 Y3GA23   Y3GA25 Y3GA26
+  Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !advisor selection criteria:
+  Y3GA_SC = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10 );
+  !Advisor Function:
+  Y3GA_AF = mean(Y3GA11 Y3GA12 Y3GA13 Y3GA14 Y3GA15 Y3GA16 Y3GA17 Y3GA18
+  Y3GA19 Y3GA20 Y3GA21 Y3GA22 Y3GA23 Y3GA24 Y3GA25 Y3GA26 );
+  !Advisor Satisfaction:
+  Y3GA_AS = mean(Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !Time to degree:
+  Y3GA_TD = mean(Y3GA34 Y3GA35 Y3GA36 Y3GA37 );
+  !Y4 Vars
+  Y4GA = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10
+  Y4GA11 Y4GA12  Y4GA13 Y4GA14 Y4GA15 Y4GA16   Y4GA18 Y4GA19 Y4GA20
+  Y4GA21 Y4GA22 Y4GA23   Y4GA25 Y4GA26
+  Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !advisor selection criteria:
+  Y4GA_SC = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10 );
+  !Advisor Function:
+  Y4GA_AF = mean(Y4GA11 Y4GA12 Y4GA13 Y4GA14 Y4GA15 Y4GA16 Y4GA17 Y4GA18
+  Y4GA19 Y4GA20 Y4GA21 Y4GA22 Y4GA23 Y4GA24 Y4GA25 Y4GA26 );
+  !Advisor Satisfaction:
+  Y4GA_AS = mean(Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !Time to degree:
+  Y4GA_TD = mean(Y4GA34 Y4GA35 Y4GA36 Y4GA37 );
+
+
+  VARIABLE:
+  Names =
+  PARTID	UNIVID	GENDER	FSTGEN	URM	INTLS	
+  Y5MHSX1	Y5MHSX2	Y5MHSX3	Y5MHSX4	Y5MHSX5	Y5MHSX6	
+  Y5MHSX7	Y5MHSX8	Y5MHSX9	
+  Y2WS12	Y2WS13	Y2WS14	Y2WS15	Y2WS16	Y2WS17	Y2WS18	Y2WS19	
+  Y3WS12	Y3WS13	Y3WS14	Y3WS15	Y3WS16	Y3WS17	Y3WS18	Y3WS19	
+  Y4WS12	Y4WS13	Y4WS14	Y4WS15	Y4WS16	Y4WS17	Y4WS18	Y4WS19	
+  Y2CERCHO	Y2ACADEV	Y2BELONG	Y2ARTI	
+  Y3CERCHO	Y3ACADEV	Y3BELONG	Y3ARTI	
+  Y4CERCHO	Y4ACADEV	Y4BELONG	Y4ARTI	
+  LEFTPROG	LGC_CLS	LGC_INC	CPROB1	CPROB2	MHS_CLS	
+  Y2GA1	Y2GA3	Y2GA4	Y2GA5	Y2GA6	Y2GA7	
+  Y2GA8	Y2GA9	Y2GA10	Y2GA11	Y2GA12	Y2GA13	
+  Y2GA14	Y2GA15	Y2GA16	Y2GA17	Y2GA18	Y2GA19	
+  Y2GA20	Y2GA21	Y2GA22	Y2GA23	Y2GA24	Y2GA25	
+  Y2GA26	Y2GA27	Y2GA28	Y2GA29	Y2GA30	Y2GA31	
+  Y2GA32	Y2GA33	Y2GA34	Y2GA35	Y2GA36	Y2GA37	
+  Y3GA1	Y3GA3	Y3GA4	Y3GA5	Y3GA6	Y3GA7	
+  Y3GA8	Y3GA9	Y3GA10	Y3GA11	Y3GA12	Y3GA13	
+  Y3GA14	Y3GA15	Y3GA16	Y3GA17	Y3GA18	Y3GA19	
+  Y3GA20	Y3GA21	Y3GA22	Y3GA23	Y3GA24	Y3GA25	
+  Y3GA26	Y3GA27	Y3GA28	Y3GA29	Y3GA30	Y3GA31	
+  Y3GA32	Y3GA33	Y3GA34	Y3GA35	Y3GA36	Y3GA37	
+  Y4GA1	Y4GA3	Y4GA4	Y4GA5	Y4GA6	Y4GA7	
+  Y4GA8	Y4GA9	Y4GA10	Y4GA11	Y4GA12	Y4GA13	
+  Y4GA14	Y4GA15	Y4GA16	Y4GA17	Y4GA18	Y4GA19	
+  Y4GA20	Y4GA21	Y4GA22	Y4GA23	Y4GA24	Y4GA25	
+  Y4GA26	Y4GA27	Y4GA28	Y4GA29	Y4GA30	Y4GA31	
+  Y4GA32	Y4GA33	Y4GA34	Y4GA35	Y4GA36	Y4GA37	
+  Y5GA1	Y5GA3	Y5GA4	Y5GA5	Y5GA6	Y5GA7	
+  Y5GA8	Y5GA9	Y5GA10	Y5GA11	Y5GA12	Y5GA13	
+  Y5GA14	Y5GA15	Y5GA16	Y5GA17	Y5GA18	Y5GA19	
+  Y5GA20	Y5GA21	Y5GA22	Y5GA23	Y5GA24	Y5GA25	
+  Y5GA26	Y5GA27	Y5GA28	Y5GA29	Y5GA30	Y5GA31	
+  Y5GA32	Y5GA33	Y5GA34	Y5GA35	Y5GA36	Y5GA37
+  ;
+
+  missing = ALL(-99);
+  cluster = UNIVID;
+  nominal = MHS_CLS; !change to mental health class variable
+
+  usevar = MHS_CLS
+  Y2GA Y3GA Y4GA;
+
+  ANALYSIS:
+  type = complex;
+  estimator = MLR;
+  integration = MONTECARLO;
+
+  MODEL:
+  MHS_CLS on Y2GA Y3GA Y4GA;
+  Y2GA Y3GA Y4GA with Y2GA Y3GA Y4GA;
+
+  OUTPUT:
+  sampstat cinterval STANDARDIZED;
+
+
+
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  1
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  30
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         306
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Unordered categorical (nominal)
+   MHS_CLS
+
+Observed independent variables
+   Y2GA        Y3GA        Y4GA
+
+Variables with special functions
+
+  Cluster variable      UNIVID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                  MONTECARLO
+  Number of integration points                                 750
+  Dimensions of numerical integration                            3
+  Adaptive quadrature                                           ON
+  Monte Carlo integration seed                                   0
+Cholesky                                                       OFF
+
+Input data file(s)
+  Mental_health_Rerun_within.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             7
+     Number of clusters                         54
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              Y2GA          Y3GA          Y4GA
+              ________      ________      ________
+ Y2GA           0.971
+ Y3GA           0.850         0.869
+ Y4GA           0.810         0.784         0.833
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    MHS_CLS
+      Category 1    0.223           46.000
+      Category 2    0.777          160.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              Y2GA          Y3GA          Y4GA
+              ________      ________      ________
+                2.452         2.396         2.372
+
+
+           Covariances
+              Y2GA          Y3GA          Y4GA
+              ________      ________      ________
+ Y2GA           0.055
+ Y3GA           0.036         0.078
+ Y4GA           0.033         0.054         0.089
+
+
+           Correlations
+              Y2GA          Y3GA          Y4GA
+              ________      ________      ________
+ Y2GA           1.000
+ Y3GA           0.554         1.000
+ Y4GA           0.468         0.656         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS 37.938
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y2GA                  2.454      -1.619       1.345    0.34%       2.310      2.448      2.517
+             297.000       0.055       3.795       2.793    1.01%       2.552      2.621
+     Y3GA                  2.395      -1.250       1.379    0.38%       2.207      2.414      2.483
+             266.000       0.078       1.234       2.793    0.38%       2.517      2.621
+     Y4GA                  2.373      -1.267       1.345    0.78%       2.207      2.379      2.448
+             255.000       0.087       1.359       2.793    0.78%       2.517      2.621
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+          H0 Value                         -66.087
+          H0 Scaling Correction Factor      1.6924
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                     158.174
+          Bayesian (BIC)                   206.580
+          Sample-Size Adjusted BIC         165.350
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2GA              -1.008      0.602     -1.675      0.094
+    Y3GA              -0.640      0.842     -0.761      0.447
+    Y4GA              -0.615      0.766     -0.803      0.422
+
+ Y2GA     WITH
+    Y3GA               0.036      0.006      5.837      0.000
+    Y4GA               0.033      0.007      4.846      0.000
+
+ Y3GA     WITH
+    Y4GA               0.055      0.007      7.741      0.000
+
+ Means
+    Y2GA               2.453      0.012    202.288      0.000
+    Y3GA               2.396      0.016    152.430      0.000
+    Y4GA               2.372      0.016    145.297      0.000
+
+ Intercepts
+    MHS_CLS#1          4.160      1.732      2.401      0.016
+
+ Variances
+    Y2GA               0.055      0.008      7.291      0.000
+    Y3GA               0.078      0.008      9.933      0.000
+    Y4GA               0.089      0.010      9.263      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.297E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+ MHS_CLS#1  ON
+    Y2GA               0.365      0.220      0.112      1.187
+    Y3GA               0.527      0.444      0.101      2.745
+    Y4GA               0.541      0.414      0.120      2.428
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2GA              -0.237      0.138     -1.714      0.087
+    Y3GA              -0.179      0.237     -0.755      0.450
+    Y4GA              -0.183      0.226     -0.811      0.417
+
+ Y2GA     WITH
+    Y3GA               0.555      0.074      7.465      0.000
+    Y4GA               0.471      0.086      5.452      0.000
+
+ Y3GA     WITH
+    Y4GA               0.657      0.036     18.330      0.000
+
+ Means
+    Y2GA              10.436      0.744     14.019      0.000
+    Y3GA               8.576      0.476     18.011      0.000
+    Y4GA               7.969      0.463     17.199      0.000
+
+ Intercepts
+    MHS_CLS#1          4.160      1.732      2.401      0.016
+
+ Variances
+    Y2GA               1.000      0.000    999.000    999.000
+    Y3GA               1.000      0.000    999.000    999.000
+    Y4GA               1.000      0.000    999.000    999.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2GA              -0.237      0.138     -1.714      0.087
+    Y3GA              -0.179      0.237     -0.755      0.450
+    Y4GA              -0.183      0.226     -0.811      0.417
+
+ Y2GA     WITH
+    Y3GA               0.555      0.074      7.465      0.000
+    Y4GA               0.471      0.086      5.452      0.000
+
+ Y3GA     WITH
+    Y4GA               0.657      0.036     18.330      0.000
+
+ Means
+    Y2GA              10.436      0.744     14.019      0.000
+    Y3GA               8.576      0.476     18.011      0.000
+    Y4GA               7.969      0.463     17.199      0.000
+
+ Intercepts
+    MHS_CLS#1          4.160      1.732      2.401      0.016
+
+ Variances
+    Y2GA               1.000      0.000    999.000    999.000
+    Y3GA               1.000      0.000    999.000    999.000
+    Y4GA               1.000      0.000    999.000    999.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2GA              -1.008      0.602     -1.675      0.094
+    Y3GA              -0.640      0.842     -0.761      0.447
+    Y4GA              -0.615      0.766     -0.803      0.422
+
+ Y2GA     WITH
+    Y3GA               0.036      0.006      5.837      0.000
+    Y4GA               0.033      0.007      4.846      0.000
+
+ Y3GA     WITH
+    Y4GA               0.055      0.007      7.741      0.000
+
+ Means
+    Y2GA               2.453      0.012    202.288      0.000
+    Y3GA               2.396      0.016    152.430      0.000
+    Y4GA               2.372      0.016    145.297      0.000
+
+ Intercepts
+    MHS_CLS#1          4.160      1.732      2.401      0.016
+
+ Variances
+    Y2GA               0.055      0.008      7.291      0.000
+    Y3GA               0.078      0.008      9.933      0.000
+    Y4GA               0.089      0.010      9.263      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2GA            -2.559      -2.189      -1.999      -1.008      -0.018       0.172       0.543
+    Y3GA            -2.809      -2.291      -2.025      -0.640       0.744       1.010       1.528
+    Y4GA            -2.589      -2.117      -1.876      -0.615       0.646       0.887       1.359
+
+ Y2GA     WITH
+    Y3GA             0.020       0.024       0.026       0.036       0.047       0.049       0.053
+    Y4GA             0.015       0.020       0.022       0.033       0.044       0.046       0.050
+
+ Y3GA     WITH
+    Y4GA             0.036       0.041       0.043       0.055       0.066       0.068       0.073
+
+ Means
+    Y2GA             2.421       2.429       2.433       2.453       2.472       2.476       2.484
+    Y3GA             2.355       2.365       2.370       2.396       2.422       2.427       2.436
+    Y4GA             2.330       2.340       2.345       2.372       2.398       2.404       2.414
+
+ Intercepts
+    MHS_CLS#1       -0.302       0.764       1.310       4.160       7.009       7.555       8.622
+
+ Variances
+    Y2GA             0.036       0.040       0.043       0.055       0.068       0.070       0.075
+    Y3GA             0.058       0.063       0.065       0.078       0.091       0.093       0.098
+    Y4GA             0.064       0.070       0.073       0.089       0.104       0.107       0.113
+
+
+CONFIDENCE INTERVALS FOR THE LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+ MHS_CLS# ON
+    Y2GA             0.077       0.112       0.135       0.365       0.982       1.187       1.720
+    Y3GA             0.060       0.101       0.132       0.527       2.105       2.745       4.610
+    Y4GA             0.075       0.120       0.153       0.541       1.907       2.428       3.892
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2GA            -0.593      -0.508      -0.464      -0.237      -0.010       0.034       0.119
+    Y3GA            -0.789      -0.643      -0.569      -0.179       0.211       0.285       0.431
+    Y4GA            -0.764      -0.625      -0.554      -0.183       0.188       0.259       0.398
+
+ Y2GA     WITH
+    Y3GA             0.363       0.409       0.433       0.555       0.677       0.701       0.746
+    Y4GA             0.248       0.301       0.329       0.471       0.613       0.640       0.693
+
+ Y3GA     WITH
+    Y4GA             0.565       0.587       0.598       0.657       0.716       0.727       0.749
+
+ Means
+    Y2GA             8.519       8.977       9.212      10.436      11.661      11.895      12.354
+    Y3GA             7.350       7.643       7.793       8.576       9.360       9.510       9.803
+    Y4GA             6.776       7.061       7.207       7.969       8.731       8.877       9.163
+
+ Intercepts
+    MHS_CLS#1       -0.302       0.764       1.310       4.160       7.009       7.555       8.622
+
+ Variances
+    Y2GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2GA            -0.593      -0.508      -0.464      -0.237      -0.010       0.034       0.119
+    Y3GA            -0.789      -0.643      -0.569      -0.179       0.211       0.285       0.431
+    Y4GA            -0.764      -0.625      -0.554      -0.183       0.188       0.259       0.398
+
+ Y2GA     WITH
+    Y3GA             0.363       0.409       0.433       0.555       0.677       0.701       0.746
+    Y4GA             0.248       0.301       0.329       0.471       0.613       0.640       0.693
+
+ Y3GA     WITH
+    Y4GA             0.565       0.587       0.598       0.657       0.716       0.727       0.749
+
+ Means
+    Y2GA             8.519       8.977       9.212      10.436      11.661      11.895      12.354
+    Y3GA             7.350       7.643       7.793       8.576       9.360       9.510       9.803
+    Y4GA             6.776       7.061       7.207       7.969       8.731       8.877       9.163
+
+ Intercepts
+    MHS_CLS#1       -0.302       0.764       1.310       4.160       7.009       7.555       8.622
+
+ Variances
+    Y2GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4GA             1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2GA            -2.559      -2.189      -1.999      -1.008      -0.018       0.172       0.543
+    Y3GA            -2.809      -2.291      -2.025      -0.640       0.744       1.010       1.528
+    Y4GA            -2.589      -2.117      -1.876      -0.615       0.646       0.887       1.359
+
+ Y2GA     WITH
+    Y3GA             0.020       0.024       0.026       0.036       0.047       0.049       0.053
+    Y4GA             0.015       0.020       0.022       0.033       0.044       0.046       0.050
+
+ Y3GA     WITH
+    Y4GA             0.036       0.041       0.043       0.055       0.066       0.068       0.073
+
+ Means
+    Y2GA             2.421       2.429       2.433       2.453       2.472       2.476       2.484
+    Y3GA             2.355       2.365       2.370       2.396       2.422       2.427       2.436
+    Y4GA             2.330       2.340       2.345       2.372       2.398       2.404       2.414
+
+ Intercepts
+    MHS_CLS#1       -0.302       0.764       1.310       4.160       7.009       7.555       8.622
+
+ Variances
+    Y2GA             0.036       0.040       0.043       0.055       0.068       0.070       0.075
+    Y3GA             0.058       0.063       0.065       0.078       0.091       0.093       0.098
+    Y4GA             0.064       0.070       0.073       0.089       0.104       0.107       0.113
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\kklit\downloads\mhs_ga.dgm
+
+     Beginning Time:  13:52:35
+        Ending Time:  13:52:36
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

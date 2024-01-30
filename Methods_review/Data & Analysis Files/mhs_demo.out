@@ -1,0 +1,657 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+04/11/2022   8:42 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+  DATA: file = "Mental_health_Rerun_within.csv";
+
+  DEFINE:
+  !Y2 Vars
+  Y2GA = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10
+  Y2GA11 Y2GA12  Y2GA13 Y2GA14 Y2GA15 Y2GA16   Y2GA18 Y2GA19 Y2GA20
+  Y2GA21 Y2GA22 Y2GA23   Y2GA25 Y2GA26
+  Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !advisor selection criteria:
+  Y2GA_SC = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10 );
+  !Advisor Function:
+  Y2GA_AF = mean(Y2GA11 Y2GA12 Y2GA13 Y2GA14 Y2GA15 Y2GA16 Y2GA17 Y2GA18
+  Y2GA19 Y2GA20 Y2GA21 Y2GA22 Y2GA23 Y2GA24 Y2GA25 Y2GA26 );
+  !Advisor Satisfaction:
+  Y2GA_AS = mean(Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !Time to degree:
+  Y2GA_TD = mean(Y2GA34 Y2GA35 Y2GA36 Y2GA37 );
+  !Y3 Vars
+  Y3GA = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10
+  Y3GA11 Y3GA12  Y3GA13 Y3GA14 Y3GA15 Y3GA16   Y3GA18 Y3GA19 Y3GA20
+  Y3GA21 Y3GA22 Y3GA23   Y3GA25 Y3GA26
+  Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !advisor selection criteria:
+  Y3GA_SC = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10 );
+  !Advisor Function:
+  Y3GA_AF = mean(Y3GA11 Y3GA12 Y3GA13 Y3GA14 Y3GA15 Y3GA16 Y3GA17 Y3GA18
+  Y3GA19 Y3GA20 Y3GA21 Y3GA22 Y3GA23 Y3GA24 Y3GA25 Y3GA26 );
+  !Advisor Satisfaction:
+  Y3GA_AS = mean(Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !Time to degree:
+  Y3GA_TD = mean(Y3GA34 Y3GA35 Y3GA36 Y3GA37 );
+  !Y4 Vars
+  Y4GA = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10
+  Y4GA11 Y4GA12  Y4GA13 Y4GA14 Y4GA15 Y4GA16   Y4GA18 Y4GA19 Y4GA20
+  Y4GA21 Y4GA22 Y4GA23   Y4GA25 Y4GA26
+  Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !advisor selection criteria:
+  Y4GA_SC = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10 );
+  !Advisor Function:
+  Y4GA_AF = mean(Y4GA11 Y4GA12 Y4GA13 Y4GA14 Y4GA15 Y4GA16 Y4GA17 Y4GA18
+  Y4GA19 Y4GA20 Y4GA21 Y4GA22 Y4GA23 Y4GA24 Y4GA25 Y4GA26 );
+  !Advisor Satisfaction:
+  Y4GA_AS = mean(Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !Time to degree:
+  Y4GA_TD = mean(Y4GA34 Y4GA35 Y4GA36 Y4GA37 );
+
+
+  VARIABLE:
+  Names =
+  PARTID	UNIVID	GENDER	FSTGEN	URM	INTLS	
+  Y5MHSX1	Y5MHSX2	Y5MHSX3	Y5MHSX4	Y5MHSX5	Y5MHSX6	
+  Y5MHSX7	Y5MHSX8	Y5MHSX9	
+  Y2WS12	Y2WS13	Y2WS14	Y2WS15	Y2WS16	Y2WS17	Y2WS18	Y2WS19	
+  Y3WS12	Y3WS13	Y3WS14	Y3WS15	Y3WS16	Y3WS17	Y3WS18	Y3WS19	
+  Y4WS12	Y4WS13	Y4WS14	Y4WS15	Y4WS16	Y4WS17	Y4WS18	Y4WS19	
+  Y2CERCHO	Y2ACADEV	Y2BELONG	Y2ARTI	
+  Y3CERCHO	Y3ACADEV	Y3BELONG	Y3ARTI	
+  Y4CERCHO	Y4ACADEV	Y4BELONG	Y4ARTI	
+  LEFTPROG	LGC_CLS	LGC_INC	CPROB1	CPROB2	MHS_CLS	
+  Y2GA1	Y2GA3	Y2GA4	Y2GA5	Y2GA6	Y2GA7	
+  Y2GA8	Y2GA9	Y2GA10	Y2GA11	Y2GA12	Y2GA13	
+  Y2GA14	Y2GA15	Y2GA16	Y2GA17	Y2GA18	Y2GA19	
+  Y2GA20	Y2GA21	Y2GA22	Y2GA23	Y2GA24	Y2GA25	
+  Y2GA26	Y2GA27	Y2GA28	Y2GA29	Y2GA30	Y2GA31	
+  Y2GA32	Y2GA33	Y2GA34	Y2GA35	Y2GA36	Y2GA37	
+  Y3GA1	Y3GA3	Y3GA4	Y3GA5	Y3GA6	Y3GA7	
+  Y3GA8	Y3GA9	Y3GA10	Y3GA11	Y3GA12	Y3GA13	
+  Y3GA14	Y3GA15	Y3GA16	Y3GA17	Y3GA18	Y3GA19	
+  Y3GA20	Y3GA21	Y3GA22	Y3GA23	Y3GA24	Y3GA25	
+  Y3GA26	Y3GA27	Y3GA28	Y3GA29	Y3GA30	Y3GA31	
+  Y3GA32	Y3GA33	Y3GA34	Y3GA35	Y3GA36	Y3GA37	
+  Y4GA1	Y4GA3	Y4GA4	Y4GA5	Y4GA6	Y4GA7	
+  Y4GA8	Y4GA9	Y4GA10	Y4GA11	Y4GA12	Y4GA13	
+  Y4GA14	Y4GA15	Y4GA16	Y4GA17	Y4GA18	Y4GA19	
+  Y4GA20	Y4GA21	Y4GA22	Y4GA23	Y4GA24	Y4GA25	
+  Y4GA26	Y4GA27	Y4GA28	Y4GA29	Y4GA30	Y4GA31	
+  Y4GA32	Y4GA33	Y4GA34	Y4GA35	Y4GA36	Y4GA37	
+  Y5GA1	Y5GA3	Y5GA4	Y5GA5	Y5GA6	Y5GA7	
+  Y5GA8	Y5GA9	Y5GA10	Y5GA11	Y5GA12	Y5GA13	
+  Y5GA14	Y5GA15	Y5GA16	Y5GA17	Y5GA18	Y5GA19	
+  Y5GA20	Y5GA21	Y5GA22	Y5GA23	Y5GA24	Y5GA25	
+  Y5GA26	Y5GA27	Y5GA28	Y5GA29	Y5GA30	Y5GA31	
+  Y5GA32	Y5GA33	Y5GA34	Y5GA35	Y5GA36	Y5GA37
+  ;
+
+  missing = ALL(-99);
+  cluster = UNIVID;
+  nominal = MHS_CLS; !change to mental health class variable
+
+  usevar = MHS_CLS
+  GENDER	FSTGEN	URM	INTLS;
+
+  ANALYSIS:
+  type = complex;
+  estimator = MLR;
+  integration = MONTECARLO;
+
+  MODEL:
+  MHS_CLS on GENDER	FSTGEN	URM	INTLS;
+  GENDER	FSTGEN	URM	INTLS with GENDER	FSTGEN	URM	INTLS;
+
+  OUTPUT:
+  sampstat cinterval STANDARDIZED;
+
+
+
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  1
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         336
+
+Number of dependent variables                                    1
+Number of independent variables                                  4
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Unordered categorical (nominal)
+   MHS_CLS
+
+Observed independent variables
+   GENDER      FSTGEN      URM         INTLS
+
+Variables with special functions
+
+  Cluster variable      UNIVID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                  MONTECARLO
+  Number of integration points                                 750
+  Dimensions of numerical integration                            3
+  Adaptive quadrature                                           ON
+  Monte Carlo integration seed                                   0
+Cholesky                                                       OFF
+
+Input data file(s)
+  Mental_health_Rerun_within.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             4
+     Number of clusters                         54
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              GENDER        FSTGEN        URM           INTLS
+              ________      ________      ________      ________
+ GENDER         1.000
+ FSTGEN         0.985         0.985
+ URM            0.982         0.979         0.982
+ INTLS          0.988         0.985         0.982         0.988
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    MHS_CLS
+      Category 1    0.223           46.000
+      Category 2    0.777          160.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              GENDER        FSTGEN        URM           INTLS
+              ________      ________      ________      ________
+                0.402         0.291         0.179         0.202
+
+
+           Covariances
+              GENDER        FSTGEN        URM           INTLS
+              ________      ________      ________      ________
+ GENDER         0.240
+ FSTGEN         0.012         0.206
+ URM            0.005         0.032         0.147
+ INTLS         -0.005         0.017         0.003         0.161
+
+
+           Correlations
+              GENDER        FSTGEN        URM           INTLS
+              ________      ________      ________      ________
+ GENDER         1.000
+ FSTGEN         0.056         1.000
+ URM            0.024         0.182         1.000
+ INTLS         -0.025         0.091         0.023         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -757.519
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     GENDER                0.402       0.401       0.000   59.82%       0.000      0.000      0.000
+             336.000       0.240      -1.839       1.000   40.18%       1.000      1.000
+     FSTGEN                0.290       0.925       0.000   71.00%       0.000      0.000      0.000
+             331.000       0.206      -1.144       1.000   29.00%       0.000      1.000
+     URM                   0.179       1.677       0.000   82.12%       0.000      0.000      0.000
+             330.000       0.147       0.811       1.000   17.88%       0.000      0.000
+     INTLS                 0.202       1.486       0.000   79.82%       0.000      0.000      0.000
+             332.000       0.161       0.208       1.000   20.18%       0.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       19
+
+Loglikelihood
+
+          H0 Value                        -866.339
+          H0 Scaling Correction Factor      1.0438
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    1770.678
+          Bayesian (BIC)                  1843.203
+          Sample-Size Adjusted BIC        1782.933
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    GENDER            -0.003      0.341     -0.008      0.994
+    FSTGEN            -0.144      0.331     -0.434      0.664
+    URM                0.466      0.432      1.077      0.281
+    INTLS             -0.002      0.375     -0.005      0.996
+
+ GENDER   WITH
+    FSTGEN             0.012      0.010      1.263      0.207
+    URM                0.004      0.011      0.403      0.687
+    INTLS             -0.005      0.008     -0.592      0.554
+
+ FSTGEN   WITH
+    URM                0.032      0.008      4.083      0.000
+    INTLS              0.017      0.010      1.628      0.104
+
+ URM      WITH
+    INTLS              0.003      0.009      0.386      0.699
+
+ Means
+    GENDER             0.402      0.030     13.476      0.000
+    FSTGEN             0.291      0.026     11.178      0.000
+    URM                0.179      0.019      9.417      0.000
+    INTLS              0.202      0.034      5.879      0.000
+
+ Intercepts
+    MHS_CLS#1         -1.294      0.238     -5.436      0.000
+
+ Variances
+    GENDER             0.240      0.006     41.041      0.000
+    FSTGEN             0.206      0.011     18.787      0.000
+    URM                0.147      0.012     12.072      0.000
+    INTLS              0.161      0.020      7.864      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.107E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+ MHS_CLS#1  ON
+    GENDER             0.997      0.340      0.511      1.946
+    FSTGEN             0.866      0.287      0.453      1.657
+    URM                1.593      0.689      0.683      3.718
+    INTLS              0.998      0.374      0.479      2.081
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    GENDER            -0.001      0.167     -0.008      0.994
+    FSTGEN            -0.065      0.150     -0.435      0.664
+    URM                0.178      0.164      1.086      0.277
+    INTLS             -0.001      0.150     -0.005      0.996
+
+ GENDER   WITH
+    FSTGEN             0.056      0.045      1.252      0.211
+    URM                0.024      0.059      0.404      0.687
+    INTLS             -0.025      0.042     -0.595      0.552
+
+ FSTGEN   WITH
+    URM                0.182      0.041      4.474      0.000
+    INTLS              0.092      0.054      1.696      0.090
+
+ URM      WITH
+    INTLS              0.022      0.058      0.385      0.700
+
+ Means
+    GENDER             0.820      0.051     16.124      0.000
+    FSTGEN             0.641      0.040     15.909      0.000
+    URM                0.468      0.030     15.437      0.000
+    INTLS              0.502      0.054      9.388      0.000
+
+ Intercepts
+    MHS_CLS#1         -1.294      0.238     -5.436      0.000
+
+ Variances
+    GENDER             1.000      0.000    999.000    999.000
+    FSTGEN             1.000      0.000    999.000    999.000
+    URM                1.000      0.000    999.000    999.000
+    INTLS              1.000      0.000    999.000    999.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    GENDER            -0.001      0.167     -0.008      0.994
+    FSTGEN            -0.065      0.150     -0.435      0.664
+    URM                0.178      0.164      1.086      0.277
+    INTLS             -0.001      0.150     -0.005      0.996
+
+ GENDER   WITH
+    FSTGEN             0.056      0.045      1.252      0.211
+    URM                0.024      0.059      0.404      0.687
+    INTLS             -0.025      0.042     -0.595      0.552
+
+ FSTGEN   WITH
+    URM                0.182      0.041      4.474      0.000
+    INTLS              0.092      0.054      1.696      0.090
+
+ URM      WITH
+    INTLS              0.022      0.058      0.385      0.700
+
+ Means
+    GENDER             0.820      0.051     16.124      0.000
+    FSTGEN             0.641      0.040     15.909      0.000
+    URM                0.468      0.030     15.437      0.000
+    INTLS              0.502      0.054      9.388      0.000
+
+ Intercepts
+    MHS_CLS#1         -1.294      0.238     -5.436      0.000
+
+ Variances
+    GENDER             1.000      0.000    999.000    999.000
+    FSTGEN             1.000      0.000    999.000    999.000
+    URM                1.000      0.000    999.000    999.000
+    INTLS              1.000      0.000    999.000    999.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    GENDER            -0.003      0.341     -0.008      0.994
+    FSTGEN            -0.144      0.331     -0.434      0.664
+    URM                0.466      0.432      1.077      0.281
+    INTLS             -0.002      0.375     -0.005      0.996
+
+ GENDER   WITH
+    FSTGEN             0.012      0.010      1.263      0.207
+    URM                0.004      0.011      0.403      0.687
+    INTLS             -0.005      0.008     -0.592      0.554
+
+ FSTGEN   WITH
+    URM                0.032      0.008      4.083      0.000
+    INTLS              0.017      0.010      1.628      0.104
+
+ URM      WITH
+    INTLS              0.003      0.009      0.386      0.699
+
+ Means
+    GENDER             0.402      0.030     13.476      0.000
+    FSTGEN             0.291      0.026     11.178      0.000
+    URM                0.179      0.019      9.417      0.000
+    INTLS              0.202      0.034      5.879      0.000
+
+ Intercepts
+    MHS_CLS#1         -1.294      0.238     -5.436      0.000
+
+ Variances
+    GENDER             0.240      0.006     41.041      0.000
+    FSTGEN             0.206      0.011     18.787      0.000
+    URM                0.147      0.012     12.072      0.000
+    INTLS              0.161      0.020      7.864      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    GENDER          -0.881      -0.671      -0.563      -0.003       0.558       0.666       0.876
+    FSTGEN          -0.996      -0.792      -0.688      -0.144       0.401       0.505       0.709
+    URM             -0.648      -0.382      -0.245       0.466       1.177       1.313       1.579
+    INTLS           -0.968      -0.737      -0.619      -0.002       0.615       0.733       0.964
+
+ GENDER   WITH
+    FSTGEN          -0.013      -0.007      -0.004       0.012       0.029       0.032       0.038
+    URM             -0.024      -0.017      -0.014       0.004       0.023       0.026       0.033
+    INTLS           -0.026      -0.021      -0.019      -0.005       0.009       0.011       0.017
+
+ FSTGEN   WITH
+    URM              0.012       0.016       0.019       0.032       0.044       0.047       0.052
+    INTLS           -0.010      -0.003       0.000       0.017       0.034       0.037       0.043
+
+ URM      WITH
+    INTLS           -0.019      -0.014      -0.011       0.003       0.018       0.021       0.026
+
+ Means
+    GENDER           0.325       0.343       0.353       0.402       0.451       0.460       0.479
+    FSTGEN           0.224       0.240       0.248       0.291       0.334       0.342       0.358
+    URM              0.130       0.142       0.148       0.179       0.211       0.217       0.228
+    INTLS            0.113       0.134       0.145       0.202       0.258       0.269       0.290
+
+ Intercepts
+    MHS_CLS#1       -1.907      -1.760      -1.685      -1.294      -0.902      -0.827      -0.681
+
+ Variances
+    GENDER           0.225       0.229       0.231       0.240       0.250       0.252       0.255
+    FSTGEN           0.178       0.185       0.188       0.206       0.224       0.227       0.234
+    URM              0.116       0.123       0.127       0.147       0.167       0.171       0.178
+    INTLS            0.108       0.121       0.127       0.161       0.195       0.201       0.214
+
+
+CONFIDENCE INTERVALS FOR THE LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+ MHS_CLS# ON
+    GENDER           0.414       0.511       0.569       0.997       1.747       1.946       2.400
+    FSTGEN           0.369       0.453       0.502       0.866       1.493       1.657       2.032
+    URM              0.523       0.683       0.782       1.593       3.244       3.718       4.851
+    INTLS            0.380       0.479       0.539       0.998       1.849       2.081       2.621
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    GENDER          -0.432      -0.329      -0.276      -0.001       0.274       0.326       0.429
+    FSTGEN          -0.451      -0.359      -0.312      -0.065       0.182       0.229       0.321
+    URM             -0.245      -0.144      -0.092       0.178       0.449       0.501       0.602
+    INTLS           -0.388      -0.296      -0.248      -0.001       0.247       0.294       0.387
+
+ GENDER   WITH
+    FSTGEN          -0.059      -0.032      -0.018       0.056       0.130       0.144       0.172
+    URM             -0.128      -0.092      -0.073       0.024       0.121       0.140       0.176
+    INTLS           -0.134      -0.108      -0.094      -0.025       0.044       0.058       0.084
+
+ FSTGEN   WITH
+    URM              0.077       0.102       0.115       0.182       0.249       0.261       0.286
+    INTLS           -0.047      -0.014       0.003       0.092       0.180       0.197       0.230
+
+ URM      WITH
+    INTLS           -0.126      -0.091      -0.073       0.022       0.117       0.135       0.171
+
+ Means
+    GENDER           0.689       0.720       0.736       0.820       0.903       0.919       0.950
+    FSTGEN           0.537       0.562       0.575       0.641       0.707       0.720       0.745
+    URM              0.390       0.408       0.418       0.468       0.518       0.527       0.546
+    INTLS            0.365       0.398       0.414       0.502       0.590       0.607       0.640
+
+ Intercepts
+    MHS_CLS#1       -1.907      -1.760      -1.685      -1.294      -0.902      -0.827      -0.681
+
+ Variances
+    GENDER           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    FSTGEN           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    URM              1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    INTLS            1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    GENDER          -0.432      -0.329      -0.276      -0.001       0.274       0.326       0.429
+    FSTGEN          -0.451      -0.359      -0.312      -0.065       0.182       0.229       0.321
+    URM             -0.245      -0.144      -0.092       0.178       0.449       0.501       0.602
+    INTLS           -0.388      -0.296      -0.248      -0.001       0.247       0.294       0.387
+
+ GENDER   WITH
+    FSTGEN          -0.059      -0.032      -0.018       0.056       0.130       0.144       0.172
+    URM             -0.128      -0.092      -0.073       0.024       0.121       0.140       0.176
+    INTLS           -0.134      -0.108      -0.094      -0.025       0.044       0.058       0.084
+
+ FSTGEN   WITH
+    URM              0.077       0.102       0.115       0.182       0.249       0.261       0.286
+    INTLS           -0.047      -0.014       0.003       0.092       0.180       0.197       0.230
+
+ URM      WITH
+    INTLS           -0.126      -0.091      -0.073       0.022       0.117       0.135       0.171
+
+ Means
+    GENDER           0.689       0.720       0.736       0.820       0.903       0.919       0.950
+    FSTGEN           0.537       0.562       0.575       0.641       0.707       0.720       0.745
+    URM              0.390       0.408       0.418       0.468       0.518       0.527       0.546
+    INTLS            0.365       0.398       0.414       0.502       0.590       0.607       0.640
+
+ Intercepts
+    MHS_CLS#1       -1.907      -1.760      -1.685      -1.294      -0.902      -0.827      -0.681
+
+ Variances
+    GENDER           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    FSTGEN           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    URM              1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    INTLS            1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    GENDER          -0.881      -0.671      -0.563      -0.003       0.558       0.666       0.876
+    FSTGEN          -0.996      -0.792      -0.688      -0.144       0.401       0.505       0.709
+    URM             -0.648      -0.382      -0.245       0.466       1.177       1.313       1.579
+    INTLS           -0.968      -0.737      -0.619      -0.002       0.615       0.733       0.964
+
+ GENDER   WITH
+    FSTGEN          -0.013      -0.007      -0.004       0.012       0.029       0.032       0.038
+    URM             -0.024      -0.017      -0.014       0.004       0.023       0.026       0.033
+    INTLS           -0.026      -0.021      -0.019      -0.005       0.009       0.011       0.017
+
+ FSTGEN   WITH
+    URM              0.012       0.016       0.019       0.032       0.044       0.047       0.052
+    INTLS           -0.010      -0.003       0.000       0.017       0.034       0.037       0.043
+
+ URM      WITH
+    INTLS           -0.019      -0.014      -0.011       0.003       0.018       0.021       0.026
+
+ Means
+    GENDER           0.325       0.343       0.353       0.402       0.451       0.460       0.479
+    FSTGEN           0.224       0.240       0.248       0.291       0.334       0.342       0.358
+    URM              0.130       0.142       0.148       0.179       0.211       0.217       0.228
+    INTLS            0.113       0.134       0.145       0.202       0.258       0.269       0.290
+
+ Intercepts
+    MHS_CLS#1       -1.907      -1.760      -1.685      -1.294      -0.902      -0.827      -0.681
+
+ Variances
+    GENDER           0.225       0.229       0.231       0.240       0.250       0.252       0.255
+    FSTGEN           0.178       0.185       0.188       0.206       0.224       0.227       0.234
+    URM              0.116       0.123       0.127       0.147       0.167       0.171       0.178
+    INTLS            0.108       0.121       0.127       0.161       0.195       0.201       0.214
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\kklit\downloads\re__[ext]_rerun_mental_health_models\mhs_demo.dgm
+
+     Beginning Time:  20:42:26
+        Ending Time:  20:42:27
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,746 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+04/11/2022   8:35 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+  DATA: file = "Mental_health_Rerun_within.csv";
+
+  DEFINE:
+  !Y2 Vars
+  Y2GA = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10
+  Y2GA11 Y2GA12  Y2GA13 Y2GA14 Y2GA15 Y2GA16   Y2GA18 Y2GA19 Y2GA20
+  Y2GA21 Y2GA22 Y2GA23   Y2GA25 Y2GA26
+  Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !advisor selection criteria:
+  Y2GA_SC = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10 );
+  !Advisor Function:
+  Y2GA_AF = mean(Y2GA11 Y2GA12 Y2GA13 Y2GA14 Y2GA15 Y2GA16 Y2GA17 Y2GA18
+  Y2GA19 Y2GA20 Y2GA21 Y2GA22 Y2GA23 Y2GA24 Y2GA25 Y2GA26 );
+  !Advisor Satisfaction:
+  Y2GA_AS = mean(Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !Time to degree:
+  Y2GA_TD = mean(Y2GA34 Y2GA35 Y2GA36 Y2GA37 );
+  !Y3 Vars
+  Y3GA = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10
+  Y3GA11 Y3GA12  Y3GA13 Y3GA14 Y3GA15 Y3GA16   Y3GA18 Y3GA19 Y3GA20
+  Y3GA21 Y3GA22 Y3GA23   Y3GA25 Y3GA26
+  Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !advisor selection criteria:
+  Y3GA_SC = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10 );
+  !Advisor Function:
+  Y3GA_AF = mean(Y3GA11 Y3GA12 Y3GA13 Y3GA14 Y3GA15 Y3GA16 Y3GA17 Y3GA18
+  Y3GA19 Y3GA20 Y3GA21 Y3GA22 Y3GA23 Y3GA24 Y3GA25 Y3GA26 );
+  !Advisor Satisfaction:
+  Y3GA_AS = mean(Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !Time to degree:
+  Y3GA_TD = mean(Y3GA34 Y3GA35 Y3GA36 Y3GA37 );
+  !Y4 Vars
+  Y4GA = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10
+  Y4GA11 Y4GA12  Y4GA13 Y4GA14 Y4GA15 Y4GA16   Y4GA18 Y4GA19 Y4GA20
+  Y4GA21 Y4GA22 Y4GA23   Y4GA25 Y4GA26
+  Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !advisor selection criteria:
+  Y4GA_SC = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10 );
+  !Advisor Function:
+  Y4GA_AF = mean(Y4GA11 Y4GA12 Y4GA13 Y4GA14 Y4GA15 Y4GA16 Y4GA17 Y4GA18
+  Y4GA19 Y4GA20 Y4GA21 Y4GA22 Y4GA23 Y4GA24 Y4GA25 Y4GA26 );
+  !Advisor Satisfaction:
+  Y4GA_AS = mean(Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !Time to degree:
+  Y4GA_TD = mean(Y4GA34 Y4GA35 Y4GA36 Y4GA37 );
+
+
+  VARIABLE:
+  Names =
+  PARTID	UNIVID	GENDER	FSTGEN	URM	INTLS	
+  Y5MHSX1	Y5MHSX2	Y5MHSX3	Y5MHSX4	Y5MHSX5	Y5MHSX6	
+  Y5MHSX7	Y5MHSX8	Y5MHSX9	
+  Y2WS12	Y2WS13	Y2WS14	Y2WS15	Y2WS16	Y2WS17	Y2WS18	Y2WS19	
+  Y3WS12	Y3WS13	Y3WS14	Y3WS15	Y3WS16	Y3WS17	Y3WS18	Y3WS19	
+  Y4WS12	Y4WS13	Y4WS14	Y4WS15	Y4WS16	Y4WS17	Y4WS18	Y4WS19	
+  Y2CERCHO	Y2ACADEV	Y2BELONG	Y2ARTI	
+  Y3CERCHO	Y3ACADEV	Y3BELONG	Y3ARTI	
+  Y4CERCHO	Y4ACADEV	Y4BELONG	Y4ARTI	
+  LEFTPROG	LGC_CLS	LGC_INC	CPROB1	CPROB2	MHS_CLS	
+  Y2GA1	Y2GA3	Y2GA4	Y2GA5	Y2GA6	Y2GA7	
+  Y2GA8	Y2GA9	Y2GA10	Y2GA11	Y2GA12	Y2GA13	
+  Y2GA14	Y2GA15	Y2GA16	Y2GA17	Y2GA18	Y2GA19	
+  Y2GA20	Y2GA21	Y2GA22	Y2GA23	Y2GA24	Y2GA25	
+  Y2GA26	Y2GA27	Y2GA28	Y2GA29	Y2GA30	Y2GA31	
+  Y2GA32	Y2GA33	Y2GA34	Y2GA35	Y2GA36	Y2GA37	
+  Y3GA1	Y3GA3	Y3GA4	Y3GA5	Y3GA6	Y3GA7	
+  Y3GA8	Y3GA9	Y3GA10	Y3GA11	Y3GA12	Y3GA13	
+  Y3GA14	Y3GA15	Y3GA16	Y3GA17	Y3GA18	Y3GA19	
+  Y3GA20	Y3GA21	Y3GA22	Y3GA23	Y3GA24	Y3GA25	
+  Y3GA26	Y3GA27	Y3GA28	Y3GA29	Y3GA30	Y3GA31	
+  Y3GA32	Y3GA33	Y3GA34	Y3GA35	Y3GA36	Y3GA37	
+  Y4GA1	Y4GA3	Y4GA4	Y4GA5	Y4GA6	Y4GA7	
+  Y4GA8	Y4GA9	Y4GA10	Y4GA11	Y4GA12	Y4GA13	
+  Y4GA14	Y4GA15	Y4GA16	Y4GA17	Y4GA18	Y4GA19	
+  Y4GA20	Y4GA21	Y4GA22	Y4GA23	Y4GA24	Y4GA25	
+  Y4GA26	Y4GA27	Y4GA28	Y4GA29	Y4GA30	Y4GA31	
+  Y4GA32	Y4GA33	Y4GA34	Y4GA35	Y4GA36	Y4GA37	
+  Y5GA1	Y5GA3	Y5GA4	Y5GA5	Y5GA6	Y5GA7	
+  Y5GA8	Y5GA9	Y5GA10	Y5GA11	Y5GA12	Y5GA13	
+  Y5GA14	Y5GA15	Y5GA16	Y5GA17	Y5GA18	Y5GA19	
+  Y5GA20	Y5GA21	Y5GA22	Y5GA23	Y5GA24	Y5GA25	
+  Y5GA26	Y5GA27	Y5GA28	Y5GA29	Y5GA30	Y5GA31	
+  Y5GA32	Y5GA33	Y5GA34	Y5GA35	Y5GA36	Y5GA37
+  ;
+
+  missing = ALL(-99);
+  cluster = UNIVID;
+  grouping = MHS_CLS (1 = low, 2 = high); !change to mental health class variable
+
+  usevar =
+  Y2ACADEV Y3ACADEV Y4ACADEV;
+
+  ANALYSIS:
+  type = complex;
+  estimator = MLR;
+  !integration = MONTECARLO;
+
+  MODEL:
+  Y2ACADEV Y3ACADEV Y4ACADEV;
+  Y2ACADEV Y3ACADEV Y4ACADEV with Y2ACADEV Y3ACADEV Y4ACADEV;
+
+
+  OUTPUT:
+  sampstat cinterval STANDARDIZED;
+
+
+
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  131
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  10
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group LOW                                                    43
+   Group HIGH                                                  153
+   Total sample size                                           196
+
+Number of dependent variables                                    3
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   Y2ACADEV    Y3ACADEV    Y4ACADEV
+
+Variables with special functions
+
+  Grouping variable     MHS_CLS
+  Cluster variable      UNIVID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  Mental_health_Rerun_within.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group LOW
+     Number of missing data patterns             3
+     Number of clusters                         26
+
+
+   Group HIGH
+     Number of missing data patterns             6
+     Number of clusters                         46
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR LOW
+
+
+           Covariance Coverage
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       0.907
+ Y3ACADEV       0.884         0.977
+ Y4ACADEV       0.884         0.977         0.977
+
+
+     PROPORTION OF DATA PRESENT FOR HIGH
+
+
+           Covariance Coverage
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       0.974
+ Y3ACADEV       0.961         0.987
+ Y4ACADEV       0.928         0.941         0.948
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS FOR LOW
+
+
+           Means
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+                2.550         2.500         2.363
+
+
+           Covariances
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       0.383
+ Y3ACADEV       0.280         0.365
+ Y4ACADEV       0.224         0.217         0.478
+
+
+           Correlations
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       1.000
+ Y3ACADEV       0.750         1.000
+ Y4ACADEV       0.523         0.520         1.000
+
+
+     ESTIMATED SAMPLE STATISTICS FOR HIGH
+
+
+           Means
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+                2.799         2.835         2.814
+
+
+           Covariances
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       0.196
+ Y3ACADEV       0.100         0.148
+ Y4ACADEV       0.085         0.076         0.176
+
+
+           Correlations
+              Y2ACADEV      Y3ACADEV      Y4ACADEV
+              ________      ________      ________
+ Y2ACADEV       1.000
+ Y3ACADEV       0.588         1.000
+ Y4ACADEV       0.460         0.472         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -281.112
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR LOW
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y2ACADEV              2.530      -1.009       1.000    5.13%       2.000      2.670      3.000
+              39.000       0.386      -0.204       3.000   56.41%       3.000      3.000
+     Y3ACADEV              2.492      -1.035       1.000    4.76%       2.000      2.330      2.670
+              42.000       0.367       0.013       3.000   45.24%       3.000      3.000
+     Y4ACADEV              2.357      -0.671       1.000    7.14%       1.330      2.330      2.670
+              42.000       0.479      -0.987       3.000   40.48%       2.670      3.000
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR HIGH
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y2ACADEV              2.796      -2.547       1.000    2.68%       2.670      3.000      3.000
+             149.000       0.198       6.223       3.000   75.84%       3.000      3.000
+     Y3ACADEV              2.835      -2.969       1.000    1.99%       2.670      3.000      3.000
+             151.000       0.148       9.374       3.000   76.82%       3.000      3.000
+     Y4ACADEV              2.809      -2.604       1.000    2.07%       2.670      3.000      3.000
+             145.000       0.178       6.745       3.000   76.55%       3.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       18
+
+Loglikelihood
+
+          H0 Value                        -281.112
+          H0 Scaling Correction Factor      1.9906
+            for MLR
+          H1 Value                        -281.112
+          H1 Scaling Correction Factor      1.9906
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                     598.223
+          Bayesian (BIC)                   657.229
+          Sample-Size Adjusted BIC         600.207
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          LOW                                0.000
+          HIGH                               0.000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                             78.538
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.280      0.062      4.517      0.000
+    Y4ACADEV           0.224      0.085      2.619      0.009
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.217      0.079      2.737      0.006
+
+ Means
+    Y2ACADEV           2.550      0.101     25.368      0.000
+    Y3ACADEV           2.500      0.093     26.981      0.000
+    Y4ACADEV           2.363      0.115     20.469      0.000
+
+ Variances
+    Y2ACADEV           0.383      0.084      4.589      0.000
+    Y3ACADEV           0.365      0.081      4.479      0.000
+    Y4ACADEV           0.478      0.074      6.463      0.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.100      0.031      3.253      0.001
+    Y4ACADEV           0.085      0.030      2.807      0.005
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.076      0.035      2.159      0.031
+
+ Means
+    Y2ACADEV           2.799      0.032     87.848      0.000
+    Y3ACADEV           2.835      0.034     84.445      0.000
+    Y4ACADEV           2.814      0.039     71.939      0.000
+
+ Variances
+    Y2ACADEV           0.196      0.039      5.042      0.000
+    Y3ACADEV           0.148      0.045      3.283      0.001
+    Y4ACADEV           0.176      0.044      4.027      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.165E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.750      0.062     12.180      0.000
+    Y4ACADEV           0.523      0.145      3.620      0.000
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.520      0.157      3.305      0.001
+
+ Means
+    Y2ACADEV           4.118      0.586      7.030      0.000
+    Y3ACADEV           4.138      0.573      7.225      0.000
+    Y4ACADEV           3.419      0.399      8.579      0.000
+
+ Variances
+    Y2ACADEV           1.000      0.000    999.000    999.000
+    Y3ACADEV           1.000      0.000    999.000    999.000
+    Y4ACADEV           1.000      0.000    999.000    999.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.588      0.078      7.588      0.000
+    Y4ACADEV           0.460      0.110      4.185      0.000
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.472      0.135      3.494      0.000
+
+ Means
+    Y2ACADEV           6.315      0.691      9.136      0.000
+    Y3ACADEV           7.376      1.200      6.149      0.000
+    Y4ACADEV           6.717      0.919      7.309      0.000
+
+ Variances
+    Y2ACADEV           1.000      0.000    999.000    999.000
+    Y3ACADEV           1.000      0.000    999.000    999.000
+    Y4ACADEV           1.000      0.000    999.000    999.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.750      0.062     12.180      0.000
+    Y4ACADEV           0.523      0.145      3.620      0.000
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.520      0.157      3.305      0.001
+
+ Means
+    Y2ACADEV           4.118      0.586      7.030      0.000
+    Y3ACADEV           4.138      0.573      7.225      0.000
+    Y4ACADEV           3.419      0.399      8.579      0.000
+
+ Variances
+    Y2ACADEV           1.000      0.000    999.000    999.000
+    Y3ACADEV           1.000      0.000    999.000    999.000
+    Y4ACADEV           1.000      0.000    999.000    999.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.588      0.078      7.588      0.000
+    Y4ACADEV           0.460      0.110      4.185      0.000
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.472      0.135      3.494      0.000
+
+ Means
+    Y2ACADEV           6.315      0.691      9.136      0.000
+    Y3ACADEV           7.376      1.200      6.149      0.000
+    Y4ACADEV           6.717      0.919      7.309      0.000
+
+ Variances
+    Y2ACADEV           1.000      0.000    999.000    999.000
+    Y3ACADEV           1.000      0.000    999.000    999.000
+    Y4ACADEV           1.000      0.000    999.000    999.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.280      0.062      4.517      0.000
+    Y4ACADEV           0.224      0.085      2.619      0.009
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.217      0.079      2.737      0.006
+
+ Means
+    Y2ACADEV           2.550      0.101     25.368      0.000
+    Y3ACADEV           2.500      0.093     26.981      0.000
+    Y4ACADEV           2.363      0.115     20.469      0.000
+
+ Variances
+    Y2ACADEV           0.383      0.084      4.589      0.000
+    Y3ACADEV           0.365      0.081      4.479      0.000
+    Y4ACADEV           0.478      0.074      6.463      0.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV           0.100      0.031      3.253      0.001
+    Y4ACADEV           0.085      0.030      2.807      0.005
+
+ Y3ACADEV WITH
+    Y4ACADEV           0.076      0.035      2.159      0.031
+
+ Means
+    Y2ACADEV           2.799      0.032     87.848      0.000
+    Y3ACADEV           2.835      0.034     84.445      0.000
+    Y4ACADEV           2.814      0.039     71.939      0.000
+
+ Variances
+    Y2ACADEV           0.196      0.039      5.042      0.000
+    Y3ACADEV           0.148      0.045      3.283      0.001
+    Y4ACADEV           0.176      0.044      4.027      0.000
+
+
+R-SQUARE
+
+Group LOW
+
+Group HIGH
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.120       0.159       0.178       0.280       0.383       0.402       0.440
+    Y4ACADEV         0.004       0.056       0.083       0.224       0.364       0.391       0.444
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.013       0.062       0.087       0.217       0.348       0.373       0.422
+
+ Means
+    Y2ACADEV         2.291       2.353       2.384       2.550       2.715       2.747       2.808
+    Y3ACADEV         2.261       2.318       2.347       2.500       2.652       2.681       2.738
+    Y4ACADEV         2.066       2.137       2.173       2.363       2.553       2.589       2.661
+
+ Variances
+    Y2ACADEV         0.168       0.220       0.246       0.383       0.521       0.547       0.599
+    Y3ACADEV         0.155       0.205       0.231       0.365       0.499       0.525       0.575
+    Y4ACADEV         0.287       0.333       0.356       0.478       0.599       0.622       0.668
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.021       0.040       0.050       0.100       0.151       0.161       0.180
+    Y4ACADEV         0.007       0.026       0.035       0.085       0.136       0.145       0.164
+
+ Y3ACADEV WITH
+    Y4ACADEV        -0.015       0.007       0.018       0.076       0.134       0.145       0.167
+
+ Means
+    Y2ACADEV         2.717       2.736       2.746       2.799       2.851       2.861       2.881
+    Y3ACADEV         2.749       2.769       2.780       2.835       2.890       2.901       2.922
+    Y4ACADEV         2.713       2.737       2.750       2.814       2.878       2.891       2.915
+
+ Variances
+    Y2ACADEV         0.096       0.120       0.132       0.196       0.260       0.273       0.297
+    Y3ACADEV         0.032       0.060       0.074       0.148       0.222       0.236       0.264
+    Y4ACADEV         0.063       0.090       0.104       0.176       0.247       0.261       0.288
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.591       0.629       0.648       0.750       0.851       0.870       0.908
+    Y4ACADEV         0.151       0.240       0.285       0.523       0.761       0.807       0.896
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.115       0.212       0.261       0.520       0.779       0.829       0.926
+
+ Means
+    Y2ACADEV         2.609       2.970       3.154       4.118       5.081       5.266       5.626
+    Y3ACADEV         2.663       3.015       3.196       4.138       5.080       5.260       5.613
+    Y4ACADEV         2.393       2.638       2.764       3.419       4.075       4.201       4.446
+
+ Variances
+    Y2ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.389       0.436       0.461       0.588       0.716       0.740       0.788
+    Y4ACADEV         0.177       0.245       0.279       0.460       0.641       0.676       0.744
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.124       0.207       0.250       0.472       0.694       0.737       0.820
+
+ Means
+    Y2ACADEV         4.535       4.961       5.178       6.315       7.453       7.670       8.096
+    Y3ACADEV         4.286       5.025       5.403       7.376       9.350       9.728      10.467
+    Y4ACADEV         4.350       4.916       5.205       6.717       8.228       8.518       9.084
+
+ Variances
+    Y2ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.591       0.629       0.648       0.750       0.851       0.870       0.908
+    Y4ACADEV         0.151       0.240       0.285       0.523       0.761       0.807       0.896
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.115       0.212       0.261       0.520       0.779       0.829       0.926
+
+ Means
+    Y2ACADEV         2.609       2.970       3.154       4.118       5.081       5.266       5.626
+    Y3ACADEV         2.663       3.015       3.196       4.138       5.080       5.260       5.613
+    Y4ACADEV         2.393       2.638       2.764       3.419       4.075       4.201       4.446
+
+ Variances
+    Y2ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.389       0.436       0.461       0.588       0.716       0.740       0.788
+    Y4ACADEV         0.177       0.245       0.279       0.460       0.641       0.676       0.744
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.124       0.207       0.250       0.472       0.694       0.737       0.820
+
+ Means
+    Y2ACADEV         4.535       4.961       5.178       6.315       7.453       7.670       8.096
+    Y3ACADEV         4.286       5.025       5.403       7.376       9.350       9.728      10.467
+    Y4ACADEV         4.350       4.916       5.205       6.717       8.228       8.518       9.084
+
+ Variances
+    Y2ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4ACADEV         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Group LOW
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.120       0.159       0.178       0.280       0.383       0.402       0.440
+    Y4ACADEV         0.004       0.056       0.083       0.224       0.364       0.391       0.444
+
+ Y3ACADEV WITH
+    Y4ACADEV         0.013       0.062       0.087       0.217       0.348       0.373       0.422
+
+ Means
+    Y2ACADEV         2.291       2.353       2.384       2.550       2.715       2.747       2.808
+    Y3ACADEV         2.261       2.318       2.347       2.500       2.652       2.681       2.738
+    Y4ACADEV         2.066       2.137       2.173       2.363       2.553       2.589       2.661
+
+ Variances
+    Y2ACADEV         0.168       0.220       0.246       0.383       0.521       0.547       0.599
+    Y3ACADEV         0.155       0.205       0.231       0.365       0.499       0.525       0.575
+    Y4ACADEV         0.287       0.333       0.356       0.478       0.599       0.622       0.668
+
+Group HIGH
+
+ Y2ACADEV WITH
+    Y3ACADEV         0.021       0.040       0.050       0.100       0.151       0.161       0.180
+    Y4ACADEV         0.007       0.026       0.035       0.085       0.136       0.145       0.164
+
+ Y3ACADEV WITH
+    Y4ACADEV        -0.015       0.007       0.018       0.076       0.134       0.145       0.167
+
+ Means
+    Y2ACADEV         2.717       2.736       2.746       2.799       2.851       2.861       2.881
+    Y3ACADEV         2.749       2.769       2.780       2.835       2.890       2.901       2.922
+    Y4ACADEV         2.713       2.737       2.750       2.814       2.878       2.891       2.915
+
+ Variances
+    Y2ACADEV         0.096       0.120       0.132       0.196       0.260       0.273       0.297
+    Y3ACADEV         0.032       0.060       0.074       0.148       0.222       0.236       0.264
+    Y4ACADEV         0.063       0.090       0.104       0.176       0.247       0.261       0.288
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\kklit\downloads\re__[ext]_rerun_mental_health_models\mhs_acadev_stats.dgm
+
+     Beginning Time:  20:35:06
+        Ending Time:  20:35:07
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

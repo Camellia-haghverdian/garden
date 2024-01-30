@@ -1,0 +1,591 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+04/05/2022   1:50 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+  DATA: file = "Mental_health_Rerun_within.csv";
+
+  DEFINE:
+  !Y2 Vars
+  Y2GA = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10
+  Y2GA11 Y2GA12  Y2GA13 Y2GA14 Y2GA15 Y2GA16   Y2GA18 Y2GA19 Y2GA20
+  Y2GA21 Y2GA22 Y2GA23   Y2GA25 Y2GA26
+  Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !advisor selection criteria:
+  Y2GA_SC = mean(Y2GA3 Y2GA4 Y2GA5 Y2GA6 Y2GA7 Y2GA8 Y2GA9 Y2GA10 );
+  !Advisor Function:
+  Y2GA_AF = mean(Y2GA11 Y2GA12 Y2GA13 Y2GA14 Y2GA15 Y2GA16 Y2GA17 Y2GA18
+  Y2GA19 Y2GA20 Y2GA21 Y2GA22 Y2GA23 Y2GA24 Y2GA25 Y2GA26 );
+  !Advisor Satisfaction:
+  Y2GA_AS = mean(Y2GA27 Y2GA28 Y2GA29 Y2GA30 Y2GA31 Y2GA32 Y2GA33 );
+  !Time to degree:
+  Y2GA_TD = mean(Y2GA34 Y2GA35 Y2GA36 Y2GA37 );
+  !Y3 Vars
+  Y3GA = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10
+  Y3GA11 Y3GA12  Y3GA13 Y3GA14 Y3GA15 Y3GA16   Y3GA18 Y3GA19 Y3GA20
+  Y3GA21 Y3GA22 Y3GA23   Y3GA25 Y3GA26
+  Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !advisor selection criteria:
+  Y3GA_SC = mean(Y3GA3 Y3GA4 Y3GA5 Y3GA6 Y3GA7 Y3GA8 Y3GA9 Y3GA10 );
+  !Advisor Function:
+  Y3GA_AF = mean(Y3GA11 Y3GA12 Y3GA13 Y3GA14 Y3GA15 Y3GA16 Y3GA17 Y3GA18
+  Y3GA19 Y3GA20 Y3GA21 Y3GA22 Y3GA23 Y3GA24 Y3GA25 Y3GA26 );
+  !Advisor Satisfaction:
+  Y3GA_AS = mean(Y3GA27 Y3GA28 Y3GA29 Y3GA30 Y3GA31 Y3GA32 Y3GA33 );
+  !Time to degree:
+  Y3GA_TD = mean(Y3GA34 Y3GA35 Y3GA36 Y3GA37 );
+  !Y4 Vars
+  Y4GA = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10
+  Y4GA11 Y4GA12  Y4GA13 Y4GA14 Y4GA15 Y4GA16   Y4GA18 Y4GA19 Y4GA20
+  Y4GA21 Y4GA22 Y4GA23   Y4GA25 Y4GA26
+  Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !advisor selection criteria:
+  Y4GA_SC = mean(Y4GA3 Y4GA4 Y4GA5 Y4GA6 Y4GA7 Y4GA8 Y4GA9 Y4GA10 );
+  !Advisor Function:
+  Y4GA_AF = mean(Y4GA11 Y4GA12 Y4GA13 Y4GA14 Y4GA15 Y4GA16 Y4GA17 Y4GA18
+  Y4GA19 Y4GA20 Y4GA21 Y4GA22 Y4GA23 Y4GA24 Y4GA25 Y4GA26 );
+  !Advisor Satisfaction:
+  Y4GA_AS = mean(Y4GA27 Y4GA28 Y4GA29 Y4GA30 Y4GA31 Y4GA32 Y4GA33 );
+  !Time to degree:
+  Y4GA_TD = mean(Y4GA34 Y4GA35 Y4GA36 Y4GA37 );
+
+
+  VARIABLE:
+  Names =
+  PARTID	UNIVID	GENDER	FSTGEN	URM	INTLS	
+  Y5MHSX1	Y5MHSX2	Y5MHSX3	Y5MHSX4	Y5MHSX5	Y5MHSX6	
+  Y5MHSX7	Y5MHSX8	Y5MHSX9	
+  Y2WS12	Y2WS13	Y2WS14	Y2WS15	Y2WS16	Y2WS17	Y2WS18	Y2WS19	
+  Y3WS12	Y3WS13	Y3WS14	Y3WS15	Y3WS16	Y3WS17	Y3WS18	Y3WS19	
+  Y4WS12	Y4WS13	Y4WS14	Y4WS15	Y4WS16	Y4WS17	Y4WS18	Y4WS19	
+  Y2CERCHO	Y2ACADEV	Y2BELONG	Y2ARTI	
+  Y3CERCHO	Y3ACADEV	Y3BELONG	Y3ARTI	
+  Y4CERCHO	Y4ACADEV	Y4BELONG	Y4ARTI	
+  LEFTPROG	LGC_CLS	LGC_INC	CPROB1	CPROB2	MHS_CLS	
+  Y2GA1	Y2GA3	Y2GA4	Y2GA5	Y2GA6	Y2GA7	
+  Y2GA8	Y2GA9	Y2GA10	Y2GA11	Y2GA12	Y2GA13	
+  Y2GA14	Y2GA15	Y2GA16	Y2GA17	Y2GA18	Y2GA19	
+  Y2GA20	Y2GA21	Y2GA22	Y2GA23	Y2GA24	Y2GA25	
+  Y2GA26	Y2GA27	Y2GA28	Y2GA29	Y2GA30	Y2GA31	
+  Y2GA32	Y2GA33	Y2GA34	Y2GA35	Y2GA36	Y2GA37	
+  Y3GA1	Y3GA3	Y3GA4	Y3GA5	Y3GA6	Y3GA7	
+  Y3GA8	Y3GA9	Y3GA10	Y3GA11	Y3GA12	Y3GA13	
+  Y3GA14	Y3GA15	Y3GA16	Y3GA17	Y3GA18	Y3GA19	
+  Y3GA20	Y3GA21	Y3GA22	Y3GA23	Y3GA24	Y3GA25	
+  Y3GA26	Y3GA27	Y3GA28	Y3GA29	Y3GA30	Y3GA31	
+  Y3GA32	Y3GA33	Y3GA34	Y3GA35	Y3GA36	Y3GA37	
+  Y4GA1	Y4GA3	Y4GA4	Y4GA5	Y4GA6	Y4GA7	
+  Y4GA8	Y4GA9	Y4GA10	Y4GA11	Y4GA12	Y4GA13	
+  Y4GA14	Y4GA15	Y4GA16	Y4GA17	Y4GA18	Y4GA19	
+  Y4GA20	Y4GA21	Y4GA22	Y4GA23	Y4GA24	Y4GA25	
+  Y4GA26	Y4GA27	Y4GA28	Y4GA29	Y4GA30	Y4GA31	
+  Y4GA32	Y4GA33	Y4GA34	Y4GA35	Y4GA36	Y4GA37	
+  Y5GA1	Y5GA3	Y5GA4	Y5GA5	Y5GA6	Y5GA7	
+  Y5GA8	Y5GA9	Y5GA10	Y5GA11	Y5GA12	Y5GA13	
+  Y5GA14	Y5GA15	Y5GA16	Y5GA17	Y5GA18	Y5GA19	
+  Y5GA20	Y5GA21	Y5GA22	Y5GA23	Y5GA24	Y5GA25	
+  Y5GA26	Y5GA27	Y5GA28	Y5GA29	Y5GA30	Y5GA31	
+  Y5GA32	Y5GA33	Y5GA34	Y5GA35	Y5GA36	Y5GA37
+  ;
+
+  missing = ALL(-99);
+  cluster = UNIVID;
+  nominal = MHS_CLS; !change to mental health class variable
+
+  usevar = MHS_CLS
+  Y2BELONG Y3BELONG Y4BELONG;
+
+  ANALYSIS:
+  type = complex;
+  estimator = MLR;
+  integration = MONTECARLO;
+
+  MODEL:
+  MHS_CLS on Y2BELONG Y3BELONG Y4BELONG;
+  Y2BELONG Y3BELONG Y4BELONG with Y2BELONG Y3BELONG Y4BELONG;
+
+
+  OUTPUT:
+  sampstat cinterval STANDARDIZED;
+
+
+
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  1
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  30
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Predicting Latent Class Membership of Mental Health in Mentoring-GA
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         306
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Unordered categorical (nominal)
+   MHS_CLS
+
+Observed independent variables
+   Y2BELONG    Y3BELONG    Y4BELONG
+
+Variables with special functions
+
+  Cluster variable      UNIVID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                  MONTECARLO
+  Number of integration points                                 750
+  Dimensions of numerical integration                            3
+  Adaptive quadrature                                           ON
+  Monte Carlo integration seed                                   0
+Cholesky                                                       OFF
+
+Input data file(s)
+  Mental_health_Rerun_within.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             8
+     Number of clusters                         54
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              Y2BELONG      Y3BELONG      Y4BELONG
+              ________      ________      ________
+ Y2BELONG       0.931
+ Y3BELONG       0.830         0.863
+ Y4BELONG       0.761         0.775         0.788
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    MHS_CLS
+      Category 1    0.223           46.000
+      Category 2    0.777          160.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              Y2BELONG      Y3BELONG      Y4BELONG
+              ________      ________      ________
+                9.042         8.880         8.861
+
+
+           Covariances
+              Y2BELONG      Y3BELONG      Y4BELONG
+              ________      ________      ________
+ Y2BELONG       3.757
+ Y3BELONG       1.451         3.565
+ Y4BELONG       1.753         1.896         4.182
+
+
+           Correlations
+              Y2BELONG      Y3BELONG      Y4BELONG
+              ________      ________      ________
+ Y2BELONG       1.000
+ Y3BELONG       0.396         1.000
+ Y4BELONG       0.442         0.491         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1583.465
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y2BELONG              9.032      -1.398       0.000    0.35%       7.670      9.000      9.330
+             285.000       3.775       2.529      11.000   24.91%      10.000     11.000
+     Y3BELONG              8.913      -1.425       0.000    0.38%       7.670      9.000      9.000
+             264.000       3.532       3.117      11.000   19.70%       9.670     10.670
+     Y4BELONG              8.884      -1.294       1.000    0.83%       7.330      9.000      9.000
+             241.000       4.131       1.968      11.000   24.90%      10.000     11.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+          H0 Value                       -1677.427
+          H0 Scaling Correction Factor      1.7509
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    3380.855
+          Bayesian (BIC)                  3429.261
+          Sample-Size Adjusted BIC        3388.031
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2BELONG          -0.230      0.125     -1.839      0.066
+    Y3BELONG          -0.145      0.123     -1.178      0.239
+    Y4BELONG          -0.275      0.133     -2.065      0.039
+
+ Y2BELONG WITH
+    Y3BELONG           1.479      0.270      5.484      0.000
+    Y4BELONG           1.756      0.340      5.163      0.000
+
+ Y3BELONG WITH
+    Y4BELONG           1.914      0.295      6.494      0.000
+
+ Means
+    Y2BELONG           9.043      0.129     69.906      0.000
+    Y3BELONG           8.877      0.128     69.347      0.000
+    Y4BELONG           8.862      0.147     60.274      0.000
+
+ Intercepts
+    MHS_CLS#1          4.394      1.963      2.238      0.025
+
+ Variances
+    Y2BELONG           3.752      0.511      7.343      0.000
+    Y3BELONG           3.601      0.514      7.002      0.000
+    Y4BELONG           4.181      0.527      7.932      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.566E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+ MHS_CLS#1  ON
+    Y2BELONG           0.795      0.099      0.622      1.015
+    Y3BELONG           0.865      0.107      0.679      1.101
+    Y4BELONG           0.760      0.101      0.585      0.986
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2BELONG          -0.445      0.245     -1.821      0.069
+    Y3BELONG          -0.276      0.227     -1.213      0.225
+    Y4BELONG          -0.562      0.265     -2.125      0.034
+
+ Y2BELONG WITH
+    Y3BELONG           0.402      0.065      6.228      0.000
+    Y4BELONG           0.443      0.055      8.085      0.000
+
+ Y3BELONG WITH
+    Y4BELONG           0.493      0.046     10.822      0.000
+
+ Means
+    Y2BELONG           4.668      0.363     12.858      0.000
+    Y3BELONG           4.677      0.388     12.048      0.000
+    Y4BELONG           4.334      0.324     13.363      0.000
+
+ Intercepts
+    MHS_CLS#1          4.394      1.963      2.238      0.025
+
+ Variances
+    Y2BELONG           1.000      0.000    999.000    999.000
+    Y3BELONG           1.000      0.000    999.000    999.000
+    Y4BELONG           1.000      0.000    999.000    999.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2BELONG          -0.445      0.245     -1.821      0.069
+    Y3BELONG          -0.276      0.227     -1.213      0.225
+    Y4BELONG          -0.562      0.265     -2.125      0.034
+
+ Y2BELONG WITH
+    Y3BELONG           0.402      0.065      6.228      0.000
+    Y4BELONG           0.443      0.055      8.085      0.000
+
+ Y3BELONG WITH
+    Y4BELONG           0.493      0.046     10.822      0.000
+
+ Means
+    Y2BELONG           4.668      0.363     12.858      0.000
+    Y3BELONG           4.677      0.388     12.048      0.000
+    Y4BELONG           4.334      0.324     13.363      0.000
+
+ Intercepts
+    MHS_CLS#1          4.394      1.963      2.238      0.025
+
+ Variances
+    Y2BELONG           1.000      0.000    999.000    999.000
+    Y3BELONG           1.000      0.000    999.000    999.000
+    Y4BELONG           1.000      0.000    999.000    999.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MHS_CLS#1  ON
+    Y2BELONG          -0.230      0.125     -1.839      0.066
+    Y3BELONG          -0.145      0.123     -1.178      0.239
+    Y4BELONG          -0.275      0.133     -2.065      0.039
+
+ Y2BELONG WITH
+    Y3BELONG           1.479      0.270      5.484      0.000
+    Y4BELONG           1.756      0.340      5.163      0.000
+
+ Y3BELONG WITH
+    Y4BELONG           1.914      0.295      6.494      0.000
+
+ Means
+    Y2BELONG           9.043      0.129     69.906      0.000
+    Y3BELONG           8.877      0.128     69.347      0.000
+    Y4BELONG           8.862      0.147     60.274      0.000
+
+ Intercepts
+    MHS_CLS#1          4.394      1.963      2.238      0.025
+
+ Variances
+    Y2BELONG           3.752      0.511      7.343      0.000
+    Y3BELONG           3.601      0.514      7.002      0.000
+    Y4BELONG           4.181      0.527      7.932      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2BELONG        -0.552      -0.475      -0.436      -0.230      -0.024       0.015       0.092
+    Y3BELONG        -0.463      -0.387      -0.348      -0.145       0.058       0.096       0.172
+    Y4BELONG        -0.618      -0.536      -0.494      -0.275      -0.056      -0.014       0.068
+
+ Y2BELONG WITH
+    Y3BELONG         0.784       0.950       1.035       1.479       1.923       2.008       2.174
+    Y4BELONG         0.880       1.089       1.196       1.756       2.315       2.422       2.632
+
+ Y3BELONG WITH
+    Y4BELONG         1.155       1.336       1.429       1.914       2.399       2.491       2.673
+
+ Means
+    Y2BELONG         8.710       8.789       8.830       9.043       9.256       9.297       9.376
+    Y3BELONG         8.547       8.626       8.666       8.877       9.087       9.127       9.206
+    Y4BELONG         8.483       8.574       8.620       8.862       9.104       9.150       9.241
+
+ Intercepts
+    MHS_CLS#1       -0.663       0.546       1.165       4.394       7.623       8.241       9.450
+
+ Variances
+    Y2BELONG         2.436       2.751       2.912       3.752       4.593       4.754       5.069
+    Y3BELONG         2.277       2.593       2.755       3.601       4.447       4.609       4.926
+    Y4BELONG         2.823       3.148       3.314       4.181       5.048       5.214       5.539
+
+
+CONFIDENCE INTERVALS FOR THE LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+ MHS_CLS# ON
+    Y2BELONG         0.576       0.622       0.647       0.795       0.976       1.015       1.096
+    Y3BELONG         0.629       0.679       0.706       0.865       1.059       1.101       1.188
+    Y4BELONG         0.539       0.585       0.610       0.760       0.946       0.986       1.070
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2BELONG        -1.075      -0.925      -0.848      -0.445      -0.043       0.034       0.185
+    Y3BELONG        -0.861      -0.721      -0.650      -0.276       0.098       0.170       0.310
+    Y4BELONG        -1.244      -1.081      -0.998      -0.562      -0.127      -0.044       0.119
+
+ Y2BELONG WITH
+    Y3BELONG         0.236       0.276       0.296       0.402       0.509       0.529       0.569
+    Y4BELONG         0.302       0.336       0.353       0.443       0.533       0.551       0.584
+
+ Y3BELONG WITH
+    Y4BELONG         0.376       0.404       0.418       0.493       0.568       0.583       0.611
+
+ Means
+    Y2BELONG         3.733       3.957       4.071       4.668       5.266       5.380       5.603
+    Y3BELONG         3.677       3.917       4.039       4.677       5.316       5.438       5.677
+    Y4BELONG         3.499       3.698       3.800       4.334       4.867       4.970       5.169
+
+ Intercepts
+    MHS_CLS#1       -0.663       0.546       1.165       4.394       7.623       8.241       9.450
+
+ Variances
+    Y2BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2BELONG        -1.075      -0.925      -0.848      -0.445      -0.043       0.034       0.185
+    Y3BELONG        -0.861      -0.721      -0.650      -0.276       0.098       0.170       0.310
+    Y4BELONG        -1.244      -1.081      -0.998      -0.562      -0.127      -0.044       0.119
+
+ Y2BELONG WITH
+    Y3BELONG         0.236       0.276       0.296       0.402       0.509       0.529       0.569
+    Y4BELONG         0.302       0.336       0.353       0.443       0.533       0.551       0.584
+
+ Y3BELONG WITH
+    Y4BELONG         0.376       0.404       0.418       0.493       0.568       0.583       0.611
+
+ Means
+    Y2BELONG         3.733       3.957       4.071       4.668       5.266       5.380       5.603
+    Y3BELONG         3.677       3.917       4.039       4.677       5.316       5.438       5.677
+    Y4BELONG         3.499       3.698       3.800       4.334       4.867       4.970       5.169
+
+ Intercepts
+    MHS_CLS#1       -0.663       0.546       1.165       4.394       7.623       8.241       9.450
+
+ Variances
+    Y2BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y3BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    Y4BELONG         1.000       1.000       1.000       1.000       1.000       1.000       1.000
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ MHS_CLS# ON
+    Y2BELONG        -0.552      -0.475      -0.436      -0.230      -0.024       0.015       0.092
+    Y3BELONG        -0.463      -0.387      -0.348      -0.145       0.058       0.096       0.172
+    Y4BELONG        -0.618      -0.536      -0.494      -0.275      -0.056      -0.014       0.068
+
+ Y2BELONG WITH
+    Y3BELONG         0.784       0.950       1.035       1.479       1.923       2.008       2.174
+    Y4BELONG         0.880       1.089       1.196       1.756       2.315       2.422       2.632
+
+ Y3BELONG WITH
+    Y4BELONG         1.155       1.336       1.429       1.914       2.399       2.491       2.673
+
+ Means
+    Y2BELONG         8.710       8.789       8.830       9.043       9.256       9.297       9.376
+    Y3BELONG         8.547       8.626       8.666       8.877       9.087       9.127       9.206
+    Y4BELONG         8.483       8.574       8.620       8.862       9.104       9.150       9.241
+
+ Intercepts
+    MHS_CLS#1       -0.663       0.546       1.165       4.394       7.623       8.241       9.450
+
+ Variances
+    Y2BELONG         2.436       2.751       2.912       3.752       4.593       4.754       5.069
+    Y3BELONG         2.277       2.593       2.755       3.601       4.447       4.609       4.926
+    Y4BELONG         2.823       3.148       3.314       4.181       5.048       5.214       5.539
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\kklit\downloads\mhs_belong.dgm
+
+     Beginning Time:  13:50:36
+        Ending Time:  13:50:37
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen
