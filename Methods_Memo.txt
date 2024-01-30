@@ -1,0 +1,82 @@
+1. Chai, Dae Seok, Huyen Thi Minh Van, Chih-Wei Wang, Jin Lee, and Jia Wang. 2020.
+	 “What Do International Students Need?The Role of Family and Community Supports for Adjustment, Engagement, and Organizational Citizenship Behavior."
+	 Journal of International Students 10(3):571-89
+
+* Descriptive statistics and intercorrelations were used for this analysis. The authors employed confirmatory factor analysis and structural equation modeling
+to analyze the relationships between the factors and confirm the hypothesized model. Standardized path coefficients, decomposition of effects, and the bias
+corrected bootstraps method were conducted to test the research hypotheses.
+
+* Data was collected via an online survey distributed among all interantional students at a public university in Texas. However, to perform the data analysis,
+it seems to me that the authors also adapted certain instruments and frameworks from previous scholars such as Herrero and Gracia (2007) and Black and Stephen
+(1989). The survey and data are not open to public. I sent an email to the author to acquire the survey and the codes.
+
+* The data is individual-based, and each data point represents an international graduate/undergrade student at a large public university in Texas.
+
+* The study aims to investigate the relationships between:
+- Perceived Family Support 
+- Community Support
+- Organizational Citizenship Behavior
+Considering the following mediating effects on relationships:
+- Cross-Cultural Adjustment
+- Engagement
+
+* Icomplete cases were removed from the data. Authors did not specify how exactly they dealth with missing data.
+
+* There are two variables in this study that I'm interested in and might use later in my own work: perceived Community Support (PCS)
+ and Cross-Cultural Adjustment (CCA)
+
+
+
+2. Zhang, Feng, Kaylee Litson, and David F. Feldon. 2022. "Social Predictors of Doctoral Student Mental health and Well-Being"
+	edited by J. Miettunen. _PLOS ONE_ 17(9):e0274273
+
+* Latent profile analysis was used to identify latent subgroups of mental well-being and mental health. Latent profile analysis (LPA)
+is a person-centered quantitative approach used to identify unmeasured subgroups of participant responses to continuous items. 
+participants were then assigned to the items, allowing for interpreting results in terms of categorical grouping differences.
+After identifying and describing the number of latent profiles, the authors assigned individuals to profiles and evaluated predictors
+of the profiles using logistic regression analysis.
+
+* The authors collected data via  questionnaires, annual surveys, in addition to writing samples and an account of scholarly productivity
+ each year provided by PhD students. The data files are available to the public.
+
+* The data studies individuals (graduate students), the underlying classification of individuals' mental well being and predictors of 
+those classification. This study was a part of a larger longitudinal study on PhD students skill development in cellular and molecular
+biological sciences in the United States.
+
+* The following are the research measures: demographics, mental health and well-being, sense of belonging, certainty of choice,
+academic development and satisfaction, mentoring relationships, research skills, publication output, and self efficacy.
+
+* Missing data was handled using full information maximum likelihood with robust standard errors and Montecarlo integration in Mplus.
+
+* I am interested in the following variables and models and might use them later in my research to apply them specifically to international
+graduate students in the US, not just in STEM majors, but also humanities:
+- Demographic variables since they include international students (Model 1)
+- Certainty of Choice (Model 2)
+- Academic Development (Model 3)
+- Sense of belonging (Model 4)
+- Satisfaction with advisor (Model 6)
+
+
+
+3. Bashir, Asma, and ruhi Khalid. 2020. "Development and Validation of the Acculturative Stress Scale for Pakistani Muslim Students"
+	edited by M. Qian. _Cogent Psychology_ 7(1):1714101.
+
+* Explanatory Factor Analysis (EFA) was conducted to develop the Multidimensional Acculturative Stress Scale. EFA has been extensively
+used to determine construct validity. This technique is widely used to distribute the number of items among small meaningful factors,
+and to identify the number of factors and to establish an association among observed variables.
+
+* Data was collected through three sets of surveys: Acculturative Stress Scale, Depression Stress and Anxiety Scale, and Satisfaction 
+With Life Scale. An additional demographic questionnaire was also provided to the participants. The data is not availiable to the public.
+I sent an email to the authors to acquire information.
+
+* The data is individual based and studies Muslim Pkaistani students during their stay abroad.
+
+* Acculturative Stess Scale, the scale used in this study consisted of six domains of stressors: academic, general living and finance,
+perceived discrimination, cultural and religious, local and environmental, and language barrier.
+
+* The authors did not mention how they dealt with missing data.
+
+* Some of the statemetns mentioned in the survey (Table 2) were interesting for  me. Also, I would like to incorporate the variable
+'discrimiantion' regarding country, culture, ethnicity, and religion in my own research.
+
+
